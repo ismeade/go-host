@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+    go-host:
+        image: go-host
+
+    lb-host:
+        image: nginx:stable-alpine
+        volumes: 
+            - /home/liyang/Code/go/go-host/conf.d:/etc/nginx/conf.d
+        ports:  
+            - 80:80
+        depends_on:
+            - go-host
+        container_name: lb-host
